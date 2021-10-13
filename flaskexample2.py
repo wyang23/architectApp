@@ -25,7 +25,7 @@ cv = CountVectorizer()
 count_matrix = cv.fit_transform(articles['combined_features'])
 cs = cosine_similarity(count_matrix)
 cs.shape
-print(articles_org[1][1])
+#print(articles_org[1][1])
 def get_article_title_from_index(index):
     return articles_org[articles_org['Index']==index]['Title'].values[0]
 def get_index_from_article_title(name):
