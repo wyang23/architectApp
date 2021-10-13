@@ -30,13 +30,9 @@ def get_article_title_from_index(index):
 def get_index_from_article_title(name):
     return articles_org[articles_org['Title']==name]['Index'].values[0]
 
-print("yes")
-
-@app.route('/')
-def hello_world():
-    return "Hello world"
-
-
+#@app.route('/')
+#def hello_world():
+#    return "Hello world"
 
 @app.route('/api', methods = ['GET'])
 def getRecommendations():
@@ -59,8 +55,6 @@ def getRecommendations():
 #getRecommendations(title="The challenge of opening up gated communities in Shanghai")
 #title = "yes"
 
-
-print("no")
 if __name__ == '__main__':
     #getRecommendations(title="The challenge of opening up gated communities in Shanghai")
     app.run(host='0.0.0.0')
