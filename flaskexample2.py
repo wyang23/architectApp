@@ -14,7 +14,7 @@ app = Flask(__name__)
 articles_org = pd.read_csv('https://raw.githubusercontent.com/wyang23/architectgooddata/main/gooddata.csv', encoding = 'ISO-8859-1')
 
 #articles_org = pd.read_csv(url)
-articles_org.head(3)
+print(articles_org.head(3))
 articles = articles_org[[ 'Author', 'Title','Keywords']]
 articles['combined_features'] = articles['Author'] +' '+ articles['Title'] +' '+ articles['Keywords']
 
@@ -46,12 +46,6 @@ def getRecommendations():
     articles_corrs = cs[test_article_index]
     articles_corrs = enumerate(articles_corrs)
     sorted_similar_articles = sorted(articles_corrs,key=lambda x:x[1],reverse=True)
-    #for i in range(10):
-    #    print(get_article_title_from_index(sorted_similar_articles[i][0]))
-    #lst = []
-    #for i in range(3):
-    #    lst.append(get_article_title_from_index(sorted_similar_articles[i][0]))
-    
     return get_article_title_from_index(sorted_similar_articles[1][0])
     
 
