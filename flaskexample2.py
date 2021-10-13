@@ -32,6 +32,12 @@ def get_index_from_article_title(name):
 
 print("yes")
 
+@app.route('/')
+def hello_world():
+    return "Hello world"
+
+
+
 @app.route('/api', methods = ['GET'])
 def getRecommendations():
     inputchr = str(request.args['query'])
