@@ -36,7 +36,10 @@ def get_index_from_article_title(name):
 
 @app.route('/api', methods = ['GET'])
 def getRecommendations():
+
     inputchr = str(request.args['query'])
+    print(request.args['query'])
+    print(inputchr)
     #test_article_title = input('Enter Article name --> ')
     test_article_title = inputchr
     test_article_index = get_index_from_article_title(test_article_title)
