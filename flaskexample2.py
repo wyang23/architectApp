@@ -41,8 +41,8 @@ def getRecommendations():
     sorted_similar_articles = sorted(articles_corrs,key=lambda x:x[1],reverse=True)
     #return get_article_title_from_index(sorted_similar_articles[1][0])
     for i in range(4):
-            articleString.append(get_article_title_from_index(sorted_similar_articles[i+1][0]))
-            articleString.append(":")
+            articleString += get_article_title_from_index(sorted_similar_articles[i+1][0])
+            articleString += ":"
     return articleString[:-1]
 
 if __name__ == '__main__':
