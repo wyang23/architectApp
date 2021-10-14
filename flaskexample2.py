@@ -33,16 +33,14 @@ def get_index_from_article_title(name):
 def getRecommendations():
     articleString = ""
     inputchr = str(request.args['query'])
-    #test_article_title = input('Enter Article name --> ')
     test_article_title = inputchr
     test_article_index = get_index_from_article_title(test_article_title)
     articles_corrs = cs[test_article_index]
     articles_corrs = enumerate(articles_corrs)
     sorted_similar_articles = sorted(articles_corrs,key=lambda x:x[1],reverse=True)
-    #return get_article_title_from_index(sorted_similar_articles[1][0])
     for i in range(4):
             articleString += get_article_title_from_index(sorted_similar_articles[i+1][0])
-            articleString += ":"
+            articleString += "^"
     return articleString[:-1]
 
 if __name__ == '__main__':
