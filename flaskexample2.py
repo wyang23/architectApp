@@ -45,12 +45,13 @@ def getRecommendations():
 
 @app.route('/api2', methods = ['GET'])
 def getCombinedRecommendations(titles):
-    titleList = titles.split("^")
+    #titleList = titles.split("^")
     sumCosineScores = dict.fromkeys(range(83), 0)
     articleString = ""
 
-    print(sumCosineScores)
-    
+    inputchr = str(request.args['query'])
+    titleList = inputchr.split("^")
+
     for title in titleList:
         print(title)
         test_article_title = title
