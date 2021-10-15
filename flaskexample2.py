@@ -44,7 +44,7 @@ def getRecommendations():
     return articleString[:-1]
 
 @app.route('/api2', methods = ['GET'])
-def getCombinedRecommendations(titles):
+def getCombinedRecommendations():
     #titleList = titles.split("^")
     sumCosineScores = dict.fromkeys(range(83), 0)
     articleString = ""
