@@ -43,5 +43,37 @@ def getRecommendations():
             articleString += "^"
     return articleString[:-1]
 
+@app.route('/api2', methods = ['GET'])
+def getCombinedRecommendations(titles):
+    titleList = titles.split("^")
+    sumCosineScores = dict.fromkeys(range(83), 0)
+    articleString = ""
+
+    print(sumCosineScores)
+    
+    for title in titleList:
+        print(title)
+        test_article_title = title
+        test_article_index = get_index_from_article_title(test_article_title)
+        articles_corrs = cs[test_article_index]
+        articles_corrs = enumerate(articles_corrs)
+        sorted_similar_articles = sorted(articles_corrs,key=lambda x:x[1],reverse=True)
+        for i in range(83):
+            sumCosineScores[sorted_similar_articles[i][0]] += sorted_similar_articles[i][1]
+        print(sumCosineScores)
+    
+    for i in range(83):
+        sumCosineScores[sorted_similar_articles[i][0]] = sumCosineScores[sorted_similar_articles[i][0]]/len(titleList)
+    
+    print(sumCosineScores)
+    a = sorted(sumCosineScores.items(), key= lambda x:x[1], reverse = True)
+    print(a)
+    for i in range(8):
+        print(get_article_title_from_index(a[i+len(titleList)][0]))
+        articleString += get_article_title_from_index(a[i+len(titleList)][0])
+        articleString += "^"
+    print(articleString[:-1])
+    return articleString[:-1]
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
