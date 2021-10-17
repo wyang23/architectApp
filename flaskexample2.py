@@ -7,6 +7,7 @@ Created on Tue Oct 12 09:55:00 2021
 from flask import Flask, request, jsonify
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 app = Flask(__name__)
@@ -19,8 +20,8 @@ articles['combined_features'] = articles['Author'] +' '+ articles['Title'] +' '+
 
 articles.iloc[0]['combined_features']
 
-cv = CountVectorizer()
-count_matrix = cv.fit_transform(articles['combined_features'])
+tf = TfidfVectorizer()
+count_matrix = tf.fit_transform(articles['combined_features'])
 cs = cosine_similarity(count_matrix)
 cs.shape
 
